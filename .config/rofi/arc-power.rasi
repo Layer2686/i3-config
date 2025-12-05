@@ -1,0 +1,50 @@
+
+/* Arc Dark - Power menu */
+
+window {
+    background: #242831;
+    border: 2px solid ;
+    border-color: #e5c07b
+    border-radius: 12px;
+    padding: 14px;
+    width: 300px;
+}
+
+mainbox {
+    children: [listview];
+    border: none;
+}
+
+listview {
+    lines: 6;
+    fixed-height: 0;
+    dynamic-width: 0;
+}
+
+element {
+    background: transparent;
+    padding: 10px 12px;
+    color: #d3dae3;
+    font: "Noto Sans 11";
+    border-radius: 6px;
+    transition: background 150ms ease;
+}
+
+element selected {
+    background: #e5c07b;
+    color: #242831;
+    font-weight: bold;
+}
+
+element urgent {
+    background: #cc241d;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+element focused {
+    background: #fabd2f;
+    color: #242831;
+    font-weight: bold;
+}
+

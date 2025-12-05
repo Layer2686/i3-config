@@ -1,0 +1,7 @@
+@theme "black.rasi"  /* Assuming you're using this theme */
+
+configuration {
+    show-icons: true;
+    icon-theme: "Papirus";  /* Use a matching icon theme */
+    font: "FiraCode Nerd Font 12";  /* Use the Nerd Font you installed */
+}

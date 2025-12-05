@@ -1,0 +1,62 @@
+
+/* Arc Dark - Applications launcher */
+
+window {
+    background: #242831;
+    border: 2px solid #61afef;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+mainbox {
+    border: none;
+    children: [input, listview];
+}
+
+input {
+    background: #2e3440;
+    border: none;
+    padding: 8px;
+    color: #d3dae3;
+    font: "Noto Sans 10";
+}
+
+listview {
+    lines: 12;
+    fixed-height: 0;
+    dynamic-width: 0;
+    scrollbar: true;
+}
+
+element {
+    background: transparent;
+    border: none;
+    padding: 6px 10px;
+    color: #a3afbf;
+}
+
+element selected {
+    background: #61afef;
+    color: #242831;
+    border-radius: 6px;
+}
+
+element urgent {
+    background: #e06c75;
+    color: #242831;
+    border-radius: 6px;
+}
+
+element focused {
+    background: #3a8dd5;
+    color: #d3dae3;
+    border-radius: 6px;
+}
+
+scrollbar {
+    background: #2e3440;
+    handle: #61afef;
+    width: 8px;
+    border-radius: 4px;
+}
+
