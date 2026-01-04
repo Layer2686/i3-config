@@ -1,6 +1,6 @@
 git
 
-# sound 
+# sound
 pipewire
 wireplumber
 pipewire-jack
@@ -10,6 +10,7 @@ lib32-pipewire
 lib32-libpipewire
 pavucontrol
 playerctl
+pulsemixer
 
 # window manager
 i3-wm
@@ -46,6 +47,8 @@ gimp
 obsidian
 redshift
 polybar
+wmctrl
+xcompmgr
 
 clipmenu
 

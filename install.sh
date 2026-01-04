@@ -158,6 +158,10 @@ setup_user_env() {
         } >> "$FISH_CONF"
     fi
     
+    # Add .local/bin to PATH (for manual installs like boomer)
+    if ! grep -q "fish_add_path" "$FISH_CONF"; then
+        echo 'fish_add_path ~/.local/bin' >> "$FISH_CONF"
+    fi
 }
 
 install_programs_from_source()
