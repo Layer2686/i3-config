@@ -1,5 +1,18 @@
 git
 
+# sound 
+pipewire
+wireplumber
+pipewire-jack
+pipewire-pulse
+libpipewire
+lib32-pipewire
+lib32-libpipewire
+pavucontrol
+playerctl
+
+
+
 # window manager
 i3-wm 
 xorg
@@ -36,17 +49,6 @@ gimp
 obsidian
 redshift
 polybar
-
-# sound 
-pipewire
-wireplumber
-pipewire-jack
-pipewire-pulse
-libpipewire
-lib32-pipewire
-lib32-libpipewire
-pavucontrol
-playerctl
 
 clipmenu
 
