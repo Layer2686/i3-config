@@ -1,0 +1,21 @@
+# ~/.config/i3/themes/gentoo_dark
+
+# --- Gentoo Dark Palette ---
+set $bg              #1E1E1E
+set $bg_dark         #151515
+set $fg              #DDDAEC
+set $fg_high         #FFFFFF
+set $purple          #54487A
+set $purple_light    #7A5ADA
+set $red             #C01C28
+set $red_high        #F66151
+set $blue_muted      #6272A4
+
+# --- Window Colors ---
+# class                 border      backgr.     text        indicator    child_border
+client.focused          $purple     $purple     $fg_high    $purple_light $purple
+client.focused_inactive #252525     #252525     $fg         $bg          #252525
+client.unfocused        $bg         $bg         #888888     $bg          $bg
+client.urgent           $red        $red        $fg_high    $red         $red
+client.placeholder      $bg         $bg         $fg         $bg          $bg
+client.background       $bg
