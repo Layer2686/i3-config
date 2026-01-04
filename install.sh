@@ -46,6 +46,10 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "==> Hostname"
 echo "$HOSTNAME_VAR" > /etc/hostname
 
+echo "==> Enabling Multilib Repo (32-bit support)"
+sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+pacman -Sy
+
 echo "==> Installing Base Packages"
 # 'go' is helpful for yay compilation
 pacman -S --noconfirm \

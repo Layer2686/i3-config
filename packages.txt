@@ -1,6 +1,6 @@
 git
 
-# window manager and x11
+# window manager
 i3-wm 
 xorg
 xorg-xrandr
@@ -35,8 +35,9 @@ cava
 gimp
 obsidian
 redshift
+polybar
 
-# sound
+# sound 
 pipewire
 wireplumber
 pipewire-jack
@@ -47,10 +48,8 @@ lib32-libpipewire
 pavucontrol
 playerctl
 
-# clipboard history. It uses dmenu, but dmenu will be deleted because there is config for dmenu
 clipmenu
 
-#temp packages
 nim
 make
 
