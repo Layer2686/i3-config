@@ -163,42 +163,59 @@ setup_user_env() {
 install_programs_from_source()
 {
     echo "==> Installing programs from source..."
-    
-    # FIX: Use $SCRIPT_DIR to ensure we find the folder regardless of current `cd`
-    # DMENU
-    if [ -d "$SCRIPT_DIR/dmenu" ]; then
-        echo "    Compiling dmenu..."
-        cd "$SCRIPT_DIR/dmenu"
-        make install
-    else
-        echo "WARNING: '$SCRIPT_DIR/dmenu' not found. Skipping."
+
+    # 1. THE "RECURSIVE" FIX
+    # This checks if the folders are empty and pulls the code if missing.
+    if [ -d "$SCRIPT_DIR/.git" ]; then
+        echo "    Initializing git submodules..."
+        # We force git to trust the directory just in case of ownership issues
+        git config --global --add safe.directory "$SCRIPT_DIR"
+        git -C "$SCRIPT_DIR" submodule update --init --recursive
     fi
 
-    # BOOMER
+    # 2. INSTALL DMENU
+    # dependency check: X11 libs are required to compile dmenu
+    if pacman -Q libx11 libxinerama libxft &>/dev/null; then
+        if [ -f "$SCRIPT_DIR/dmenu/Makefile" ]; then
+            echo "    Compiling dmenu..."
+            cd "$SCRIPT_DIR/dmenu"
+            # specific fix: sometimes config.mk assumes /usr/local, but some systems prefer /usr
+            # We stick to default make install (usually /usr/local)
+            make clean install
+        else
+            echo "WARNING: dmenu source code not found in '$SCRIPT_DIR/dmenu'. Is the submodule empty?"
+        fi
+    else
+        echo "ERROR: Missing dmenu dependencies. Ensure 'libx11 libxinerama libxft' are in packages.txt"
+    fi
+
+    # 3. INSTALL BOOMER
     if [ -d "$SCRIPT_DIR/boomer" ]; then
         echo "    Compiling boomer..."
         cd "$SCRIPT_DIR/boomer"
-        
-        # FIX: nimble install as root puts binaries in /root/.nimble
-        # We build it locally, then move binary to /usr/local/bin for global access
+
         if command -v nimble >/dev/null; then
+            # Clean previous builds
+            rm -f boomer
+            
+            # Build
             nimble build -d:release --accept
-            # Assuming the binary is named 'boomer' after build
+            
+            # Install
             if [ -f "boomer" ]; then
                 cp boomer /usr/local/bin/
                 chmod 755 /usr/local/bin/boomer
-                echo "    Boomer installed to /usr/local/bin"
+                echo "    Boomer installed successfully."
             else
-                echo "ERROR: Boomer binary not found after build."
+                echo "ERROR: Boomer binary was not created. Build failed."
             fi
         else
-            echo "WARNING: 'nimble' not found. Is 'nim' in your packages.txt?"
+            echo "WARNING: 'nimble' (Nim package manager) not found. Skipping boomer."
         fi
     else
-        echo "WARNING: '$SCRIPT_DIR/boomer' not found. Skipping."
+        echo "WARNING: boomer directory not found."
     fi
 }
-
 setup_user_env "user"
 setup_user_env "work"
 install_programs_from_source
